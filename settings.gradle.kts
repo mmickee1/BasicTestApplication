@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "BasicTestApplication"
 include(":app")
+include(":baselineprofile")

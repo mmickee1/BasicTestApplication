@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("com.google.dagger.hilt.android")
     kotlin("kapt")
+    id("androidx.baselineprofile")
 }
 
 android {
@@ -53,6 +54,8 @@ android {
 
 dependencies {
     implementation("com.google.dagger:hilt-android:2.44")
+    implementation("androidx.profileinstaller:profileinstaller:1.3.1")
+    "baselineProfile"(project(":baselineprofile"))
     kapt("com.google.dagger:hilt-android-compiler:2.44")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
     implementation("androidx.core:core-ktx:1.12.0")
