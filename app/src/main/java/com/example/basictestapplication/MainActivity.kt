@@ -24,6 +24,11 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewDynamicColors
+import androidx.compose.ui.tooling.preview.PreviewFontScale
+import androidx.compose.ui.tooling.preview.PreviewLightDark
+import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.basictestapplication.ui.theme.BasicTestApplicationTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,15 +38,17 @@ import kotlinx.coroutines.launch
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContent {
             BasicTestApplicationTheme {
                 // A surface container using the 'background' color from the theme
+                val viewModel: MainViewModel = viewModel()
+                val data = viewModel.data.collectAsState(initial = emptyList()).value
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    val viewModel: MainViewModel = viewModel()
-                    MainScreenContent(vm = viewModel)
+                    MainScreenContent(data = data, onSetCacheClick = { viewModel.setDataToCache() })
                 }
             }
         }
@@ -49,8 +56,10 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun MainScreenContent(vm: MainViewModel) {
-    val data = vm.data.collectAsState(initial = emptyList()).value
+fun MainScreenContent(
+    data: List<TodoList?> = emptyList(),
+    onSetCacheClick: () -> Unit = {},
+) {
 
     val listState = rememberLazyListState()
     val scope = rememberCoroutineScope()
@@ -61,7 +70,6 @@ fun MainScreenContent(vm: MainViewModel) {
             .fillMaxSize()
     ) {
         Column {
-
             Text(
                 text = "data: $data",
                 modifier = Modifier.testTag("DataTextField")
@@ -71,7 +79,7 @@ fun MainScreenContent(vm: MainViewModel) {
                     .fillMaxWidth()
                     .testTag("CacheButton")
                     .wrapContentHeight(),
-                onClick = { vm.setDataToCache() }) {
+                onClick = { onSetCacheClick() }) {
                 Text("Set cache value")
             }
             LazyColumn(
@@ -137,3 +145,23 @@ fun FooterItem() {
         modifier = Modifier.testTag("FooterTextField")
     )
 }
+
+@PreviewScreenSizes
+@PreviewFontScale
+@PreviewLightDark
+@PreviewDynamicColors
+@Preview
+@Composable
+fun Preview_main_app() {
+    BasicTestApplicationTheme {
+        // A surface container using the 'background' color from the theme
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            MainScreenContent()
+        }
+    }
+}
+
+
