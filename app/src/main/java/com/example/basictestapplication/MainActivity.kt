@@ -24,7 +24,6 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewDynamicColors
 import androidx.compose.ui.tooling.preview.PreviewFontScale
 import androidx.compose.ui.tooling.preview.PreviewLightDark
@@ -150,7 +149,6 @@ fun FooterItem() {
 @PreviewFontScale
 @PreviewLightDark
 @PreviewDynamicColors
-@Preview
 @Composable
 fun Preview_main_app() {
     BasicTestApplicationTheme {
