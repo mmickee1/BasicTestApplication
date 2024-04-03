@@ -39,15 +39,17 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
+            val scope = rememberCoroutineScope()
             BasicTestApplicationTheme {
-                // A surface container using the 'background' color from the theme
                 val viewModel: MainViewModel = viewModel()
                 val data = viewModel.data.collectAsState(initial = emptyList()).value
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MainScreenContent(data = data, onSetCacheClick = { viewModel.setDataToCache() })
+                    MainScreenContent(
+                        data = data,
+                        onSetCacheClick = { scope.launch { viewModel.setDataToCache() } })
                 }
             }
         }
