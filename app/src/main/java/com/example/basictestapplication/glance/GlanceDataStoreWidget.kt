@@ -2,6 +2,11 @@ package com.example.basictestapplication.glance
 
 import android.content.Context
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
@@ -52,6 +57,14 @@ class GlanceDataStoreWidget : GlanceAppWidget() {
         val context = LocalContext.current
         val dataStore = GlanceDataProvider(context)
         val glanceText = runBlocking { dataStore.glanceTextFlow.firstOrNull() }
+
+//               var glanceText by rememberSaveable { mutableStateOf("") }
+//        LaunchedEffect(true) {
+//            dataStore.glanceTextFlow.firstOrNull()?.let {
+//                glanceText = it
+//            }
+//        }
+
 
         Column(
             modifier = GlanceModifier.fillMaxSize().background(Color.Cyan).clickable(

@@ -59,6 +59,15 @@ dependencies {
     implementation("androidx.datastore:datastore-core-android:1.1.0-beta02")
     implementation ("androidx.datastore:datastore-preferences:1.0.0")
     implementation("androidx.glance:glance-appwidget:1.0.0")
+
+    // hilt + workmanager
+    implementation("androidx.hilt:hilt-work:1.2.0")
+    implementation("androidx.work:work-runtime-ktx:2.8.0")
+    implementation("com.google.dagger:hilt-android:2.50")
+    implementation("androidx.hilt:hilt-common:1.2.0")
+    kapt("androidx.hilt:hilt-compiler:1.2.0")
+
+    implementation("com.jakewharton.timber:timber:5.0.1")
     "baselineProfile"(project(":baselineprofile"))
     kapt("com.google.dagger:hilt-android-compiler:2.50")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")

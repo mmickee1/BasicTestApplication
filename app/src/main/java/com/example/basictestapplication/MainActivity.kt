@@ -154,7 +154,6 @@ fun FooterItem() {
 @Composable
 fun Preview_main_app() {
     BasicTestApplicationTheme {
-        // A surface container using the 'background' color from the theme
         Surface(
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
@@ -163,5 +162,3 @@ fun Preview_main_app() {
         }
     }
 }
-
-
