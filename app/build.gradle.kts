@@ -63,9 +63,9 @@ dependencies {
     implementation ("androidx.datastore:datastore-preferences:1.0.0")
     implementation("androidx.glance:glance-appwidget:1.0.0")
 
-    // hilt + workmanager
+    // Hilt + WorkManager
     implementation("androidx.hilt:hilt-work:1.2.0")
-    implementation("androidx.work:work-runtime-ktx:2.8.0")
+    implementation("androidx.work:work-runtime-ktx:2.9.0")
     implementation("com.google.dagger:hilt-android:2.50")
     implementation("androidx.hilt:hilt-common:1.2.0")
     kapt("androidx.hilt:hilt-compiler:1.2.0")
