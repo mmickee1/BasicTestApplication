@@ -22,6 +22,9 @@ android {
             useSupportLibrary = true
         }
     }
+    buildFeatures {
+        buildConfig = true
+    }
 
     buildTypes {
         release {
